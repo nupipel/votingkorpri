@@ -26,7 +26,10 @@
                         <table id="dataTableExample" class="table">
                             <thead>
                                 <tr>
-                                    <th>File</th>
+                                    <th>Name</th>
+                                    <th>Slug</th>
+                                    <th>Phone</th>
+                                    <th>Candidate</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

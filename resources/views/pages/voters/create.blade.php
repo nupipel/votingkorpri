@@ -7,15 +7,15 @@
 @section('content')
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('website.index') }}">{{ $name }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Form {{ $name }}</li>
+            <li class="breadcrumb-item"><a href="{{ route('website.index') }}">Voter</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Form Voter</li>
         </ol>
     </nav>
 
     <div class="grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Form {{ $name }}</h4>
+                <h4 class="card-title">Form Voter</h4>
                 @include('partials.errors')
                 <form
                     action="@isset($website) {{ route('website.update', $website->id) }} @endisset @empty($website) {{ route('website.store') }} @endempty"
