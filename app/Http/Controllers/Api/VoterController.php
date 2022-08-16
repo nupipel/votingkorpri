@@ -11,23 +11,22 @@ class VoterController extends Controller
 {
     public function storeVote(Request $request)
     {
-        // try {
-        $data = $request->validate([
-            'slug' => 'required',
-            'candidate_id' => 'required'
-        ]);
-        $voter = Voter::where('slug', $data['slug'])->first();
-        if ($voter == null) {
-            return ResponseFormatter::error(null, 'Data Voter Tidak Ditemukan');
+        try {
+            $data = $request->validate([
+                'slug' => 'required',
+                'candidate_id' => 'required'
+            ]);
+            $voter = Voter::where('slug', $data['slug'])->first();
+            if ($voter == null) {
+                return ResponseFormatter::error(null, 'Data Voter Tidak Ditemukan');
+            }
+            if ($voter->candidate_id != null) {
+                return ResponseFormatter::error(null, 'Anda Sudah Melakukan Voting Sebelumnya');
+            }
+            $voter->update($data);
+            return ResponseFormatter::success($voter, 'Terimakasih Anda Sudah Melakukan Voting');
+        } catch (\Throwable $th) {
+            ResponseFormatter::error();
         }
-        if ($voter->candidate_id != null) {
-            return ResponseFormatter::error(null, 'Anda Sudah Melakukan Voting Sebelumnya');
-        }
-        $voter->update($data);
-        return ResponseFormatter::success($voter, 'Terimakasih Anda Sudah Melakukan Voting');
-        // } catch (\Throwable $th) {
-        //     ResponseFormatter::error();
-        // }
-        // ResponseFormatter::error();
     }
 }
