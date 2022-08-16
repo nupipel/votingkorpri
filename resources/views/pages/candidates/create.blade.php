@@ -39,7 +39,7 @@
                             @empty($candidate) required @endempty accept="image/*"></input>
                     </div>
                     @isset($candidate)
-                        <img src="{{ asset('uploads/' . $candidate->image) }}">
+                        <img src="{{ asset('uploads/' . $candidate->image) }}" height="100px">
                     @endisset
                     <div class="text-end">
                         <input class="btn btn-primary" type="submit" value="Submit">
