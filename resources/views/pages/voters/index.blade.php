@@ -50,7 +50,7 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-warning" href="{{ route('voter.edit', $voter->id) }}">
-                                                Update
+                                                Edit
                                             </a>
                                         </td>
                                     </tr>
