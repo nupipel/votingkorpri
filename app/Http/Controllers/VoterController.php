@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateVoterRequest;
 use App\Models\Voter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class VoterController extends Controller
 {
@@ -33,9 +36,13 @@ class VoterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateVoterRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::random(30);
+        Voter::create($data);
+        session()->flash('success');
+        return redirect(route('voter.index'));
     }
 
     /**

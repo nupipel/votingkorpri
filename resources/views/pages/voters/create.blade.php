@@ -27,6 +27,10 @@
                         <label for="name" class="form-label">Name</label>
                         <input type="text" name="name" required class="form-control" id="">
                     </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="text" name="phone" required class="form-control" id="">
+                    </div>
                     <div class="text-end">
                         <input class="btn btn-primary" type="submit" value="Submit">
                     </div>
