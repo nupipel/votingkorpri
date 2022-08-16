@@ -26,18 +26,21 @@
                     @endisset
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" id=""
-                            rows="10">{{ isset($candidate) ? $candidate->name : '' }}</input>
+                        <input type="text" class="form-control" name="name" id="" required
+                            value="{{ isset($candidate) ? $candidate->name : '' }}" >
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control" name="description" id="" rows="10">{{ isset($candidate) ? $candidate->description : '' }}</textarea>
+                        <textarea class="form-control" name="description" id="" rows="10" required>{{ isset($candidate) ? $candidate->description : '' }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">image</label>
-                        <input type="text" class="form-control" name="image" id=""
-                            rows="10">{{ isset($candidate) ? $candidate->image : '' }}</input>
+                        <input type="file" class="form-control" name="image"
+                            @empty($candidate) required @endempty accept="image/*"></input>
                     </div>
+                    @isset($candidate)
+                        <img src="{{ asset('uploads/' . $candidate->image) }}">
+                    @endisset
                     <div class="text-end">
                         <input class="btn btn-primary" type="submit" value="Submit">
                     </div>

@@ -36,7 +36,18 @@ class CandidateController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'required|image',
+        ]);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $file_name = date('mdYHis') . '-' . $name;
+            $image = $file->storeAs('image', $file_name, 'public_uploads');
+            $data['image'] = $image;
+        };
         Candidate::create($data);
         session()->flash('success');
         return redirect(route('candidate.index'));
@@ -61,7 +72,7 @@ class CandidateController extends Controller
      */
     public function edit(Candidate $candidate)
     {
-        //
+        return view('pages.candidates.create', compact('candidate'));
     }
 
     /**
@@ -73,7 +84,22 @@ class CandidateController extends Controller
      */
     public function update(Request $request, Candidate $candidate)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'image' => 'nullable|image',
+        ]);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $file_name = date('mdYHis') . '-' . $name;
+            $image = $file->storeAs('image', $file_name, 'public_uploads');
+            $candidate->deleteImage();
+            $data['image'] = $image;
+        };
+        $candidate->update($data);
+        session()->flash('success');
+        return redirect(route('candidate.index'));
     }
 
     /**
@@ -84,6 +110,9 @@ class CandidateController extends Controller
      */
     public function destroy(Candidate $candidate)
     {
-        //
+        $candidate->delete();
+        $candidate->deleteImage();
+        session()->flash('success');
+        return redirect(route('candidate.index'));
     }
 }

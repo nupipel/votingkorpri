@@ -36,18 +36,26 @@
                                 @foreach ($candidates as $candidate)
                                     <tr>
                                         <td>
-                                            {!! $candidate->name !!}
+                                            {{ $candidate->name }}
                                         </td>
                                         <td>
-                                            {!! $candidate->description !!}
+                                            {{ $candidate->description }}
                                         </td>
-                                        <td>
-                                            {!! $candidate->image !!}
+                                        <td><img src="{{ asset('uploads/' . $candidate->image) }}">
                                         </td>
                                         <td>
                                             <a class="btn btn-warning" href="{{ route('candidate.edit', $candidate->id) }}">
                                                 Edit
                                             </a>
+                                            <form action="{{ route('candidate.destroy', $candidate->id) }}" method="POST"
+                                                class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger"
+                                                    onclick="return confirm('Are you sure?')">
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
