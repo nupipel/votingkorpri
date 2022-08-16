@@ -103,9 +103,6 @@
 @push('custom-scripts')
     <script>
         $(() => {
-
-
-
             var colors = {
                 primary: "#6571ff",
                 secondary: "#7987a1",
@@ -122,18 +119,28 @@
             }
 
             var fontFamily = "'Roboto', Helvetica, sans-serif";
-            var datas = {{ $candidates }};
+
+
+            let candidates = {!! $candidates !!};
+
+            console.log(candidates);
+            let labels = [];
+            let datas = [];
+            $.each(candidates, function(idx, val) {
+                labels.push(val.name);
+                datas.push(val.total_vote);
+            });
 
             if ($('#chartjsPie').length) {
                 new Chart($('#chartjsPie'), {
                     type: 'pie',
                     data: {
-                        labels: ["Africa", "Asia", "Europe"],
+                        labels: labels,
                         datasets: [{
                             label: "Population (millions)",
                             backgroundColor: [colors.primary, colors.danger, colors.info],
                             borderColor: colors.cardBg,
-                            data: [2478, 4267, 1334]
+                            data: datas
                         }]
                     },
                     options: {
