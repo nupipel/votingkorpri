@@ -29,6 +29,6 @@ class Candidate extends Model
     }
     public function getImageUrlAttribute()
     {
-        return env('ASSET_URL') . 'uploads/' . $this->image;
+        return env('ASSET_URL') . "/uploads/" . $this->image;
     }
 }
