@@ -34,18 +34,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($voters as $voter)
+                                @foreach ($voters as $voter)
                                     <tr>
                                         <td>
-                                            {!! $voter->description !!}
+                                            {{ $voter->name }}
                                         </td>
-                                        <td> <a class="btn btn-warning btn-icon"
-                                                href="{{ route('voter.edit', $voter->id) }}">
-                                                <i data-feather="edit"></i>
+                                        <td>
+                                            {{ $voter->slug }}
+                                        </td>
+                                        <td>
+                                            {{ $voter->phone }}
+                                        </td>
+                                        <td>
+                                            {{ $voter->candidate ?? 'Belum Memilih' }}
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-warning" href="{{ route('voter.edit', $voter->id) }}">
+                                                Update
                                             </a>
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
