@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CandidateController;
+use App\Http\Controllers\Api\VoterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('getCandidate', [CandidateController::class, 'getCandidate']);
+Route::post('storeVote', [VoterController::class, 'storeVote']);
