@@ -19,6 +19,7 @@ class CandidateResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'image' => $this->image,
+            'image_url' => $this->image_url,
             'total_vote' => $this->voters->count(),
         ];
     }

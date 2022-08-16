@@ -12,7 +12,7 @@ class Candidate extends Model
 
     protected $fillable = ["name", "description", "image"];
 
-    protected $appends = ['total_vote'];
+    protected $appends = ['total_vote', 'image_url'];
 
     public function voters()
     {
@@ -26,5 +26,9 @@ class Candidate extends Model
     public function getTotalVoteAttribute()
     {
         return $this->voters->count();
+    }
+    public function getImageUrlAttribute()
+    {
+        return env('ASSET_URL') . 'uploads/' . $this->image;
     }
 }
