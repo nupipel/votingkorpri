@@ -13,4 +13,7 @@ class CandidateController extends Controller
         $candidates = Candidate::all();
         return ResponseFormatter::success(CandidateResource::collection($candidates));
     }
+    public function getCandidateDetail(Candidate $candidate){
+        return ResponseFormatter::success(new CandidateResource($candidate));
+    }
 }
