@@ -122,7 +122,7 @@
             }
 
             var fontFamily = "'Roboto', Helvetica, sans-serif";
-
+            var datas = {{ $candidates }};
 
             if ($('#chartjsPie').length) {
                 new Chart($('#chartjsPie'), {
