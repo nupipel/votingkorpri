@@ -46,7 +46,7 @@
                                             {{ $voter->phone }}
                                         </td>
                                         <td>
-                                            {{ $voter->candidate ?? 'Belum Memilih' }}
+                                            {{ $voter->candidate->name ?? 'Belum Memilih' }}
                                         </td>
                                         <td>
                                             <a class="btn btn-warning" href="{{ route('voter.edit', $voter->id) }}">
