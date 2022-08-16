@@ -14,7 +14,7 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.candidates.index');
     }
 
     /**
@@ -24,7 +24,10 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        //
+        $tryprint = [
+            'title' => 'test'
+        ];
+        return view('pages.candidates.create', $tryprint);
     }
 
     /**
