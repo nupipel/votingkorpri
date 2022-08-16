@@ -52,6 +52,15 @@
                                             <a class="btn btn-warning" href="{{ route('voter.edit', $voter->id) }}">
                                                 Edit
                                             </a>
+                                            <form action="{{ route('voter.destroy', $voter->id) }}" method="POST"
+                                                class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger"
+                                                    onclick="return confirm('Are you sure?')">
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

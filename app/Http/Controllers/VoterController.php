@@ -65,7 +65,7 @@ class VoterController extends Controller
      */
     public function edit(Voter $voter)
     {
-        //
+        return view('pages.voters.create', compact('voter'));
     }
 
     /**
@@ -75,9 +75,12 @@ class VoterController extends Controller
      * @param  \App\Models\Voter  $voter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Voter $voter)
+    public function update(CreateVoterRequest $request, Voter $voter)
     {
-        //
+        $data = $request->all();
+        $voter->update($data);
+        session()->flash('success');
+        return redirect(route('voter.index'));
     }
 
     /**
@@ -88,6 +91,8 @@ class VoterController extends Controller
      */
     public function destroy(Voter $voter)
     {
-        //
+        $voter->delete();
+        session()->flash('success');
+        return redirect(route('voter.index'));
     }
 }
