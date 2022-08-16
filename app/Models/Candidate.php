@@ -12,8 +12,6 @@ class Candidate extends Model
 
     protected $fillable = ["name", "description", "image"];
 
-    protected $appends = ['image_url'];
-
     public function voters()
     {
         return $this->hasMany(Voter::class, 'candidate_id', 'id');
