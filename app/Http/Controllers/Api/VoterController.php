@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Candidate;
+use App\Models\Voter;
 use Illuminate\Http\Request;
 
 class VoterController extends Controller
@@ -15,12 +16,15 @@ class VoterController extends Controller
             'slug' => 'required',
             'candidate_id' => 'required'
         ]);
-        $candidate = Candidate::where('slug', $data['slug'])->firstOrFail();
-        if ($candidate->candidate_id != null) {
+        $voter = Voter::where('slug', $data['slug'])->first();
+        if ($voter == null) {
+            return ResponseFormatter::error(null, 'Data Voter Tidak Ditemukan');
+        }
+        if ($voter->candidate_id != null) {
             return ResponseFormatter::error(null, 'Anda Sudah Melakukan Voting Sebelumnya');
         }
-        $candidate->update($data);
-        return ResponseFormatter::success($candidate, 'Terimakasih Anda Sudah Melakukan Voting');
+        $voter->update($data);
+        return ResponseFormatter::success($voter, 'Terimakasih Anda Sudah Melakukan Voting');
         // } catch (\Throwable $th) {
         //     ResponseFormatter::error();
         // }
