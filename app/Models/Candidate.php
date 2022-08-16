@@ -12,6 +12,8 @@ class Candidate extends Model
 
     protected $fillable = ["name", "description", "image"];
 
+    protected $appends = ['total_vote'];
+
     public function voters()
     {
         return $this->hasMany(Voter::class, 'candidate_id', 'id');
@@ -19,5 +21,10 @@ class Candidate extends Model
     public function deleteImage()
     {
         Storage::disk('public_uploads')->delete($this->attributes['image']);
+    }
+
+    public function getTotalVoteAttribute()
+    {
+        return $this->voters->count();
     }
 }

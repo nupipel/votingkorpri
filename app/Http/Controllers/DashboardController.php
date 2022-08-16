@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Voter;
 use App\Http\Controllers\Controller;
+use App\Models\Candidate;
 
 class DashboardController extends Controller
 {
@@ -14,6 +15,8 @@ class DashboardController extends Controller
             'counts'    => Voter::whereNotNull('candidate_id')->get()->count(),
             'uncount'   => Voter::whereNull('candidate_id')->get()->count(),
         ];
+        $candidates = Candidate::all();
+        return $candidates;
         return view('dashboard', compact('data'));
     }
 }
