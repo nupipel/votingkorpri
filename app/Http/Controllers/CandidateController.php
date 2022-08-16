@@ -14,7 +14,8 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        return view('pages.candidates.index');
+        $candidates = Candidate::all();
+        return view('pages.candidates.index', compact('candidates'));
     }
 
     /**
@@ -24,10 +25,7 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        $tryprint = [
-            'title' => 'test'
-        ];
-        return view('pages.candidates.create', $tryprint);
+        return view('pages.candidates.create');
     }
 
     /**
@@ -38,7 +36,10 @@ class CandidateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        Candidate::create($data);
+        session()->flash('success');
+        return redirect(route('candidate.index'));
     }
 
     /**

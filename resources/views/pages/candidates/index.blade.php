@@ -33,18 +33,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($voters as $voter)
+                                @foreach ($candidates as $candidate)
                                     <tr>
                                         <td>
-                                            {!! $voter->description !!}
+                                            {!! $candidate->name !!}
                                         </td>
-                                        <td> <a class="btn btn-warning btn-icon"
-                                                href="{{ route('voter.edit', $voter->id) }}">
-                                                <i data-feather="edit"></i>
+                                        <td>
+                                            {!! $candidate->description !!}
+                                        </td>
+                                        <td>
+                                            {!! $candidate->image !!}
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-warning" href="{{ route('candidate.edit', $candidate->id) }}">
+                                                Edit
                                             </a>
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

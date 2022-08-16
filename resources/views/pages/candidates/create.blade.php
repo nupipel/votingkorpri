@@ -16,7 +16,32 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Create Candidate</h4>
-                {{ $title }}
+                @include('partials.errors')
+                <form
+                    action="@isset($candidate) {{ route('candidate.update', $candidate->id) }} @endisset @empty($candidate) {{ route('candidate.store') }} @endempty"
+                    method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @isset($candidate)
+                        @method('PUT')
+                    @endisset
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" id=""
+                            rows="10">{{ isset($candidate) ? $candidate->name : '' }}</input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" name="description" id="" rows="10">{{ isset($candidate) ? $candidate->description : '' }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">image</label>
+                        <input type="text" class="form-control" name="image" id=""
+                            rows="10">{{ isset($candidate) ? $candidate->image : '' }}</input>
+                    </div>
+                    <div class="text-end">
+                        <input class="btn btn-primary" type="submit" value="Submit">
+                    </div>
+                </form>
             </div>
         </div>
     </div>

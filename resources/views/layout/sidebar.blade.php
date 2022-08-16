@@ -12,8 +12,8 @@
     <div class="sidebar-body">
         <ul class="nav">
             <li class="nav-item nav-category">Main</li>
-            <li class="nav-item {{ active_class(['/']) }}">
-                <a href="{{ url('/') }}" class="nav-link">
+            <li class="nav-item {{ active_class(['dashboard.*']) }}">
+                <a href="{{ route('dashboard.index') }}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Dashboard</span>
                 </a>
@@ -25,11 +25,11 @@
                 </a>
             </li>
             <li class="nav-item {{ active_class(['voter.*']) }}">
-              <a href="{{ route('voter.index') }}" class="nav-link">
-                  <i class="link-icon" data-feather="unlock"></i>
-                  <span class="link-title">Voter</span>
-              </a>
-          </li>
+                <a href="{{ route('voter.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="unlock"></i>
+                    <span class="link-title">Voter</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
