@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\VoterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('candidate', CandidateController::class);
+    Route::resource('voter', VoterController::class);
 });
 
 Route::get('/dashboard', function () {
