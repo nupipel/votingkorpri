@@ -11,8 +11,8 @@ class Voter extends Model
 
     protected $fillable = ['slug', 'name', 'phone', 'candidate_id'];
 
-    // public function candidate()
-    // {
-    //     return $this->belongsTo()
-    // }
+    public function candidate()
+    {
+        return $this->belongsTo(Candidate::class, 'candidate_id', 'id');
+    }
 }
