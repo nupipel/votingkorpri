@@ -89,10 +89,11 @@ class VoterController extends Controller
      * @param  \App\Models\Voter  $voter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Voter $voter)
+    public function destroy($id)
     {
-        $voter->delete();
-        session()->flash('success');
-        return redirect(route('voter.index'));
+        Voter::findOrFail($id)->delete();
+        return response()->json(['msg' => 'Deleted successfully.']);
+        // session()->flash('success');
+        // return redirect(route('voter.index'));
     }
 }
