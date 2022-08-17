@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoterController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::resource('user', UserController::class);
     Route::resource('candidate', CandidateController::class);
     Route::resource('voter', VoterController::class);
-
 });
 
 require __DIR__ . '/auth.php';

@@ -20,14 +20,20 @@
             </li>
             <li class="nav-item {{ active_class(['candidate.*']) }}">
                 <a href="{{ route('candidate.index') }}" class="nav-link">
-                    <i class="link-icon" data-feather="unlock"></i>
+                    <i class="link-icon" data-feather="users"></i>
                     <span class="link-title">Candidate</span>
                 </a>
             </li>
             <li class="nav-item {{ active_class(['voter.*']) }}">
                 <a href="{{ route('voter.index') }}" class="nav-link">
-                    <i class="link-icon" data-feather="unlock"></i>
+                    <i class="link-icon" data-feather="user-check"></i>
                     <span class="link-title">Voter</span>
+                </a>
+            </li>
+            <li class="nav-item {{ active_class(['user.*']) }}">
+                <a href="{{ route('user.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="smile"></i>
+                    <span class="link-title">User</span>
                 </a>
             </li>
         </ul>
