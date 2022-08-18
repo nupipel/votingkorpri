@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\LogError;
 use App\Models\Voter;
 
 class WhatsappController extends Controller
@@ -13,6 +14,7 @@ class WhatsappController extends Controller
         $records = array();
         foreach (json_decode($voters) as $response) {
             $records[] = [
+                'id' => $response->id,
                 'name' => $response->name,
                 'phone' => $response->phone,
                 'slug' => $response->slug,
@@ -44,6 +46,13 @@ class WhatsappController extends Controller
                 )
             );
             $result = curl_exec($ch);
+            if ($result == 'failed') {
+                LogError::create([
+                    'phone' => $record['phone'],
+                    'voter_id' => $record['id'],
+                    'message' => 'Gagal Mengirim Pesan, Nomor Tidak Valid'
+                ]);
+            }
         }
         return ResponseFormatter::success($result);
     }
@@ -74,6 +83,14 @@ class WhatsappController extends Controller
             )
         );
         $result = curl_exec($ch);
+        if ($result == 'failed') {
+            $error = LogError::create([
+                'phone' => $voter->phone,
+                'voter_id' => $voter->id,
+                'message' => 'Gagal Mengirim Pesan, Nomor Tidak Valid'
+            ]);
+            return ResponseFormatter::error("", $error->message);
+        }
         return ResponseFormatter::success($result, 'Whatsapp Sukses Terkirim');
     }
 }
