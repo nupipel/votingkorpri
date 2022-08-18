@@ -27,6 +27,7 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
+                                    <th>OPD</th>
                                     <th>Description</th>
                                     <th>Image</th>
                                     <th>Action</th>
@@ -37,6 +38,9 @@
                                     <tr>
                                         <td>
                                             {{ $candidate->name }}
+                                        </td>
+                                        <td>
+                                            {{ $candidate->opd }}
                                         </td>
                                         <td>
                                             {{ $candidate->description }}

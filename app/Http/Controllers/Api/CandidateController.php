@@ -22,9 +22,11 @@ class CandidateController extends Controller
     {
         $candidates = Candidate::all();
         $names = [];
+        $opds = [];
         $tvotes = [];
         $dataColors = [];
         foreach ($candidates as $candidate) {
+            array_push($opds, $candidate->opd);
             array_push($names, $candidate->name);
             array_push($tvotes, $candidate->total_vote);
         }
@@ -34,6 +36,7 @@ class CandidateController extends Controller
         }
         $data = [
             'name'      => $names,
+            'opd'      => $opds,
             'total_vote' => $tvotes,
             'colors'    => $dataColors,
         ];
