@@ -27,7 +27,12 @@
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" name="name" id="" required
-                            value="{{ isset($candidate) ? $candidate->name : '' }}" >
+                            value="{{ isset($candidate) ? $candidate->name : '' }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="opd" class="form-label">OPD</label>
+                        <input type="text" class="form-control" name="opd" id="" required
+                            value="{{ isset($candidate) ? $candidate->opd : '' }}">
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>

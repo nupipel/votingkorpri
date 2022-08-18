@@ -38,6 +38,7 @@ class CandidateController extends Controller
     {
         $data = $request->validate([
             'name' => 'required',
+            'opd' => 'required',
             'description' => 'required',
             'image' => 'required|image',
         ]);
@@ -86,6 +87,7 @@ class CandidateController extends Controller
     {
         $data = $request->validate([
             'name' => 'required',
+            'opd' => 'required',
             'description' => 'required',
             'image' => 'nullable|image',
         ]);
