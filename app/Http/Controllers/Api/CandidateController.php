@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CandidateResource;
 use App\Models\Candidate;
+use App\Models\Voter;
 use Illuminate\Http\Request;
 
 class CandidateController extends Controller
@@ -25,6 +26,7 @@ class CandidateController extends Controller
         $opds = [];
         $tvotes = [];
         $dataColors = [];
+
         foreach ($candidates as $candidate) {
             array_push($opds, $candidate->opd);
             array_push($names, $candidate->name);
@@ -39,6 +41,9 @@ class CandidateController extends Controller
             'opd'      => $opds,
             'total_vote' => $tvotes,
             'colors'    => $dataColors,
+            'members'   => Voter::all()->count(),
+            'counts'    => Voter::whereNotNull('candidate_id')->get()->count(),
+            'uncount'   => Voter::whereNull('candidate_id')->get()->count(),
         ];
         return ResponseFormatter::success($data);
     }
