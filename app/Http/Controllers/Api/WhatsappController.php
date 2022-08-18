@@ -19,14 +19,14 @@ class WhatsappController extends Controller
             ];
         }
         foreach ($records as $record) {
-            $message = "VOTING KORPRI";
+            $message = "VOTING KORPRI\n\nNama : " . $record['name'] . "\nKode : " . $record['slug'] . "\n\nLink : \n" . env('MAIN_URL') . $record['slug'];
 
             $message = preg_replace("/(\n)/", "<ENTER>", $message);
             $message = preg_replace("/(\r)/", "<ENTER>", $message);
 
             $phone = preg_replace("/(\n)/", ",", $record['phone']);
             $phone = preg_replace("/(\r)/", "", $record['phone']);
-            $data = array("phone" => $phone, "key" => "e4d16a0772635a648acd790503fe71a9ebcd9f538952dfbc", "message" => $message);
+            $data = array("phone_no" => $phone, "key" => "e4d16a0772635a648acd790503fe71a9ebcd9f538952dfbc", "message" => $message);
             $data_string = json_encode($data);
             $ch = curl_init('http://116.203.92.59/api/send_message');
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -44,7 +44,6 @@ class WhatsappController extends Controller
                 )
             );
             $result = curl_exec($ch);
-            return $result;
             return ResponseFormatter::success($result);
         }
     }
