@@ -2,6 +2,7 @@
 
 @push('plugin-styles')
     <link href="{{ asset('assets/plugins/datatables-net-bs5/dataTables.bootstrap5.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -26,6 +27,7 @@
                         <table id="dataTableExample" class="table">
                             <thead>
                                 <tr>
+                                    <th>Image</th>
                                     <th>Name</th>
                                     <th>Email / Username</th>
                                     <th>Action</th>
@@ -35,24 +37,23 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td>
+                                            <img src="{{ asset('uploads/' . $user->image) }}" class="img-thumbnail">
+                                        </td>
+                                        <td>
                                             {{ $user->name }}
                                         </td>
                                         <td>
                                             {{ $user->email }}
                                         </td>
                                         <td>
-                                            <a class="btn btn-warning" href="{{ route('user.edit', $user->id) }}">
-                                                Edit
-                                            </a>
-                                            <form action="{{ route('user.destroy', $user->id) }}" method="POST"
-                                                class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Are you sure?')">
-                                                    Delete
-                                                </button>
-                                            </form>
+                                            <div class="btn-group">
+                                                <a href="{{ route('user.edit', $user->id) }}">
+                                                    <i class="link-icon" data-feather="edit"></i>
+                                                </a>
+                                                <a onclick="del({{ $user->id }})" href="#">
+                                                    <i class="link-icon text-danger" data-feather="trash-2"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -68,8 +69,43 @@
 @push('plugin-scripts')
     <script src="{{ asset('assets/plugins/datatables-net/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-net-bs5/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
     <script src="{{ asset('assets/js/data-table.js') }}"></script>
+    <script>
+        function del(id) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: "{{ route('user.store') }}" + "/" + id,
+                        success: function(data) {
+                            Swal.fire(
+                                'Deleted!',
+                                data.msg,
+                                'success'
+                            ).then((result) => {
+                                window.location.href = "{{ route('user.index') }}"
+                            })
+                        },
+                    })
+                }
+            })
+        }
+    </script>
 @endpush

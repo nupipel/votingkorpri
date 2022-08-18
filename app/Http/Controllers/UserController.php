@@ -41,14 +41,21 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
+            'image' => 'required|image',
         ]);
-
-        $user = [
+        $data = [
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ];
-        User::create($user);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $file_name = date('mdYHis') . '-' . $name;
+            $image = $file->storeAs('image', $file_name, 'public_uploads');
+            $data['image'] = $image;
+        };
+        User::create($data);
         session()->flash('success');
         return redirect(route('user.index'));
     }
@@ -87,6 +94,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
+            'image' => 'nullable|image',
         ]);
 
         $data = [
@@ -95,6 +103,19 @@ class UserController extends Controller
         ];
         if ($request->password) {
             $data['password'] = Hash::make($request->password);
+        }
+
+        if ($request->image) {
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $name = $file->getClientOriginalName();
+                $file_name = date('mdYHis') . '-' . $name;
+                $image = $file->storeAs('image', $file_name, 'public_uploads');
+                if (isset($user->image)) {
+                    $user->deleteImage();
+                }
+                $data['image'] = $image;
+            };
         }
 
         $user->update($data);
@@ -110,6 +131,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        $user->deleteImage();
+        return response()->json(['msg' => 'Deleted successfully.']);
     }
 }

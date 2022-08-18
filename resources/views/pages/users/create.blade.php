@@ -36,8 +36,17 @@
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" name="password" id="">
+                        <input type="password" class="form-control" name="password" id=""
+                            @empty($user) required @endempty>
                     </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">image</label>
+                        <input type="file" class="form-control" name="image"
+                            @empty($user) required @endempty accept="image/*"></input>
+                    </div>
+                    @isset($user)
+                        <img src="{{ asset('uploads/' . $user->image) }}" height="100px">
+                    @endisset
                     <div class="text-end">
                         <input class="btn btn-primary" type="submit" value="Submit">
                     </div>

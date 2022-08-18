@@ -41,7 +41,7 @@
                                         <td>
                                             {{ $candidate->description }}
                                         </td>
-                                        <td><img src="{{ asset('uploads/' . $candidate->image) }}">
+                                        <td><img src="{{ asset('uploads/' . $candidate->image) }}" class="img-thumbnail">
                                         </td>
                                         <td>
                                             <a class="btn btn-warning" href="{{ route('candidate.edit', $candidate->id) }}">
