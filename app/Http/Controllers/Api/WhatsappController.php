@@ -74,6 +74,6 @@ class WhatsappController extends Controller
             )
         );
         $result = curl_exec($ch);
-        return ResponseFormatter::success($result);
+        return ResponseFormatter::success($result, 'Whatsapp Sukses Terkirim');
     }
 }
