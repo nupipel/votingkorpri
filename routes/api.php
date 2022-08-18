@@ -25,5 +25,5 @@ Route::get('getCandidate', [CandidateController::class, 'getCandidate']);
 Route::get('getCandidate/{candidate}', [CandidateController::class, 'getCandidateDetail']);
 Route::post('storeVote', [VoterController::class, 'storeVote']);
 Route::get('wa', [WhatsappController::class, 'kirim_wa']);
-Route::get('watest/{phone_no}/{nama}/{nip}', [WhatsappController::class, 'kirim_wa_test']);
+Route::get('singleWhatsapp/{voter}', [WhatsappController::class, 'singleWhatsapp']);
 Route::get('getTotalVote', [CandidateController::class, 'getTotalVote']);
