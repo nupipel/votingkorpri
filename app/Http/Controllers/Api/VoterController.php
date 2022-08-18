@@ -18,7 +18,7 @@ class VoterController extends Controller
             ]);
             $voter = Voter::where('slug', $data['slug'])->first();
             if ($voter == null) {
-                return ResponseFormatter::error(null, 'Data Voter Tidak Ditemukan');
+                return ResponseFormatter::error(null, 'Anda Tidak Terdaftar Sebagai Voter');
             }
             if ($voter->candidate_id != null) {
                 return ResponseFormatter::error(null, 'Anda Sudah Melakukan Voting Sebelumnya');
