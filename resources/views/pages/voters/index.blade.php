@@ -107,11 +107,15 @@
                     })
                 },
                 success: function(data) {
-                    if (data.data == "failed") {
-                        Swal.fire('Gagal mengirim link', 'nomor peserta tidak aktif!');
-                        return;
-                    }
-                    Swal.fire('Berhasil mengirim link');
+                    Swal.fire(data.meta.message);
+                },
+                error: function(data) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal mengirim link',
+                        text: data.responseJSON.meta.message
+                    });
+                    return;
                 },
                 complete: function() {
                     Swal.hideLoading();
