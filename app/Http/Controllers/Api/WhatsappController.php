@@ -24,9 +24,9 @@ class WhatsappController extends Controller
             $message = preg_replace("/(\n)/", "<ENTER>", $message);
             $message = preg_replace("/(\r)/", "<ENTER>", $message);
 
-            $phone = preg_replace("/(\n)/", ",", $record['phone']);
-            $phone = preg_replace("/(\r)/", "", $record['phone']);
-            $data = array("phone_no" => $phone, "key" => "e4d16a0772635a648acd790503fe71a9ebcd9f538952dfbc", "message" => $message);
+            // $phone = preg_replace("/(\n)/", ",", $record['phone']);
+            // $phone = preg_replace("/(\r)/", "", $record['phone']);
+            $data = array("phone_no" => $record['phone'], "key" => "e4d16a0772635a648acd790503fe71a9ebcd9f538952dfbc", "message" => $message);
             $data_string = json_encode($data);
             $ch = curl_init('http://116.203.92.59/api/send_message');
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -44,8 +44,8 @@ class WhatsappController extends Controller
                 )
             );
             $result = curl_exec($ch);
-            return ResponseFormatter::success($result);
         }
+        return ResponseFormatter::success($result);
     }
     public function kirim_wa_test($phone_no, $nama, $nip)
     {
