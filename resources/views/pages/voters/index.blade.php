@@ -55,10 +55,14 @@
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="{{ route('voter.edit', $voter->id) }}">
+                                                <a onclick="sendWa({{ $voter->id }})" data-wa="{{ $voter->id }}"
+                                                    href="#" class="mx-2">
+                                                    <i class="link-icon text-success" data-feather="send"></i>
+                                                </a>
+                                                <a href="{{ route('voter.edit', $voter->id) }}" class="mx-2">
                                                     <i class="link-icon" data-feather="edit"></i>
                                                 </a>
-                                                <a onclick="del({{ $voter->id }})" href="#">
+                                                <a onclick="del({{ $voter->id }})" href="#" class="mx-2">
                                                     <i class="link-icon text-danger" data-feather="trash-2"></i>
                                                 </a>
                                             </div>
@@ -83,6 +87,38 @@
     <script src="{{ asset('assets/js/data-table.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <script>
+        function sendWa(id) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: 'GET',
+                url: "/api/singleWhatsapp" + "/" + id,
+                beforeSend: function() {
+                    Swal.fire({
+                        title: 'Please Wait!',
+                        html: 'Sending Link...',
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                    })
+                },
+                success: function(data) {
+                    if (data.data == "failed") {
+                        Swal.fire('Gagal mengirim link', 'nomor peserta tidak aktif!');
+                        return;
+                    }
+                    Swal.fire('Berhasil mengirim link');
+                },
+                complete: function() {
+                    Swal.hideLoading();
+                }
+            })
+        };
+
         function del(id) {
             $.ajaxSetup({
                 headers: {
