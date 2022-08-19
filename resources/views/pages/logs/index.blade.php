@@ -39,6 +39,9 @@
                                         </td>
                                         <td>
                                             <div class="btn-group">
+                                                <a onclick="sendWa({{ $log->voter->phone }})" href="#" class="mx-2">
+                                                    <i class="link-icon text-success" data-feather="send"></i>
+                                                </a>
                                                 <a onclick="del({{ $log->id }})" href="#" class="mx-2">
                                                     <i class="link-icon text-danger" data-feather="trash-2"></i>
                                                 </a>
@@ -64,6 +67,14 @@
 @push('custom-scripts')
     <script src="{{ asset('assets/js/data-table.js') }}"></script>
     <script>
+        function sendWa(phone) {
+            const hp = "62" + phone.toString();
+            const slug = "{{ $log->voter->slug ?? null }}";
+            const textMsg = "VOTING KORPRI : https://votingkorpri.semarangkota.go.id/" + slug;
+
+            window.open("https://wa.me/" + hp + "?text=" + textMsg, "_blank");
+        };
+
         function del(id) {
             $.ajaxSetup({
                 headers: {
