@@ -10,20 +10,19 @@
             <div class="row flex-grow-1">
                 <div class="col-md-4 grid-margin stretch-card">
                     <div class="card">
+                        <div class="card-header bg-success bg-gradient text-white">
+                            <h3 class="text-uppercase">Total Member</h3>
+                        </div>
                         <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Total Member</h6>
-
-                            </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 col-xl-5">
-                                    <h3 class="mb-2">{{ $data['members'] }}</h3>
-                                    <div class="d-flex align-items-baseline">
+                                    <h2 class="mx-2">{{ $data['members'] }}</h2>
+                                    {{-- <div class="d-flex align-items-baseline">
                                         <p class="text-success">
-                                            {{-- <span>+3.3%</span> --}}
+                                            <span>+3.3%</span>
                                             <i data-feather="arrow-up" class="icon-sm mb-1"></i>
                                         </p>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -31,20 +30,19 @@
                 </div>
                 <div class="col-md-4 grid-margin stretch-card">
                     <div class="card">
+                        <div class="card-header bg-primary bg-gradient text-white">
+                            <h4 class="text-uppercase">Voting Count</h4>
+                        </div>
                         <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Voting Count</h6>
-
-                            </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 col-xl-5">
-                                    <h3 class="mb-2">{{ $data['counts'] }}</h3>
-                                    <div class="d-flex align-items-baseline">
+                                    <h2 class="mb-2">{{ $data['counts'] }}</h2>
+                                    {{-- <div class="d-flex align-items-baseline">
                                         <p class="text-danger">
-                                            {{-- <span>-2.8%</span> --}}
+                                            <span>-2.8%</span>
                                             <i data-feather="arrow-down" class="icon-sm mb-1"></i>
                                         </p>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -52,20 +50,19 @@
                 </div>
                 <div class="col-md-4 grid-margin stretch-card">
                     <div class="card">
+                        <div class="card-header bg-danger bg-gradient text-white">
+                            <h4 class="text-uppercase">Belum Voting</h4>
+                        </div>
                         <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="card-title mb-0">Belum Voting</h6>
-
-                            </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 col-xl-5">
-                                    <h3 class="mb-2">{{ $data['uncount'] }}</h3>
-                                    <div class="d-flex align-items-baseline">
+                                    <h2 class="mb-2">{{ $data['uncount'] }}</h2>
+                                    {{-- <div class="d-flex align-items-baseline">
                                         <p class="text-success">
-                                            {{-- <span>+2.8%</span> --}}
+                                            <span>+2.8%</span>
                                             <i data-feather="arrow-up" class="icon-sm mb-1"></i>
                                         </p>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                             </div>
@@ -80,7 +77,6 @@
         <div class="col-xl-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Pie chart</h6>
                     <canvas id="chartjsPie"></canvas>
                 </div>
             </div>
