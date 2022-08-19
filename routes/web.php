@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoterController;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('user', UserController::class);
     Route::resource('candidate', CandidateController::class);
     Route::resource('voter', VoterController::class);
-    Route::resource('log', VoterController::class);
+    Route::resource('log', LogController::class);
 });
 
 require __DIR__ . '/auth.php';
