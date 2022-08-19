@@ -32,16 +32,18 @@
                                     <tr>
                                         <td>{{ $log->created_at }}</td>
                                         <td>
-                                            {{ $log->voter->name }} / {{ $log->phone }}
+                                            {{ $log->voter->name ?? '-' }} / {{ $log->phone }}
                                         </td>
                                         <td>
                                             {{ $log->message }}
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <a onclick="sendWa({{ $log->voter->phone }})" href="#" class="mx-2">
-                                                    <i class="link-icon text-success" data-feather="send"></i>
-                                                </a>
+                                                @isset($log->voter)
+                                                    <a onclick="sendWa({{ $log->voter->phone }})" href="#" class="mx-2">
+                                                        <i class="link-icon text-success" data-feather="send"></i>
+                                                    </a>
+                                                @endisset
                                                 <a onclick="del({{ $log->id }})" href="#" class="mx-2">
                                                     <i class="link-icon text-danger" data-feather="trash-2"></i>
                                                 </a>

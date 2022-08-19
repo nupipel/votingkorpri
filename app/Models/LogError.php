@@ -11,7 +11,8 @@ class LogError extends Model
 
     protected $fillable = ['phone', 'voter_id', 'message'];
 
-    public function voter(){
+    public function voter()
+    {
         return $this->belongsTo(Voter::class, 'voter_id', 'id');
     }
 }
