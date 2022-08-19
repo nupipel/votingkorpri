@@ -39,7 +39,7 @@
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <a onclick="del({{ $log->id }})" href="#">
+                                                <a onclick="del({{ $log->id }})" href="#" class="mx-2">
                                                     <i class="link-icon text-danger" data-feather="trash-2"></i>
                                                 </a>
                                             </div>

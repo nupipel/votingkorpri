@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LogError;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class LogController extends Controller
 {
@@ -81,6 +82,8 @@ class LogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $log = LogError::findOrFail($id);
+        $log->delete();
+        return response()->json(['msg' => 'Deleted successfully.']);
     }
 }
