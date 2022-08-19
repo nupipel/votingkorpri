@@ -13,10 +13,10 @@ class VoterController extends Controller
     {
         try {
             $data = $request->validate([
-                'slug' => 'required',
+                'phone' => 'required',
                 'candidate_id' => 'required'
             ]);
-            $voter = Voter::where('slug', $data['slug'])->first();
+            $voter = Voter::where('phone', $data['phone'])->first();
             if ($voter == null) {
                 return ResponseFormatter::error(null, 'Anda Tidak Terdaftar Sebagai Voter');
             }
