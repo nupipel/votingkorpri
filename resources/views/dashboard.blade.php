@@ -11,7 +11,7 @@
                 <div class="col-md-4 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-header bg-success bg-gradient text-white">
-                            <h3 class="text-uppercase">Total Member</h3>
+                            <h4 class="text-uppercase">Total Member</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
