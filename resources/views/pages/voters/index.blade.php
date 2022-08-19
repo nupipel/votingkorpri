@@ -59,6 +59,9 @@
                                                     href="#" class="mx-2">
                                                     <i class="link-icon text-success" data-feather="send"></i>
                                                 </a>
+                                                <a onclick="sendWeb({{ $voter->phone }})" href="#" class="mx-2">
+                                                    <i class="link-icon text-dark" data-feather="navigation"></i>
+                                                </a>
                                                 <a href="{{ route('voter.edit', $voter->id) }}" class="mx-2">
                                                     <i class="link-icon" data-feather="edit"></i>
                                                 </a>
@@ -87,6 +90,13 @@
     <script src="{{ asset('assets/js/data-table.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <script>
+        function sendWeb(phone) {
+            const hp = "62" + phone.toString();
+            // const slug = "{{ $log->voter->slug ?? null }}";
+            const textMsg = "VOTING KORPRI : https://votingkorpri.semarangkota.go.id/" + hp;
+            window.open("https://wa.me/" + hp + "?text=" + textMsg, "_blank");
+        };
+
         function sendWa(id) {
             $.ajaxSetup({
                 headers: {
