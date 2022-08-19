@@ -12,7 +12,7 @@ class CandidateController extends Controller
 {
     public function getCandidate()
     {
-        $candidates = Candidate::all();
+        $candidates = Candidate::orderBy('id', 'asc')->get();
         return ResponseFormatter::success(CandidateResource::collection($candidates));
     }
     public function getCandidateDetail(Candidate $candidate)
