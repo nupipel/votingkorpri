@@ -55,18 +55,18 @@
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <a onclick="sendWa({{ $voter->id }})" data-wa="{{ $voter->id }}"
-                                                    href="#" class="mx-2">
+                                                <a onclick="sendWa({{ $voter->id }})" href="#" class="mx-2">
                                                     <i class="link-icon text-success" data-feather="send"></i>
-                                                </a>
-                                                <a onclick="sendWeb({{ $voter->phone }})" href="#" class="mx-2">
-                                                    <i class="link-icon text-dark" data-feather="navigation"></i>
                                                 </a>
                                                 <a href="{{ route('voter.edit', $voter->id) }}" class="mx-2">
                                                     <i class="link-icon" data-feather="edit"></i>
                                                 </a>
                                                 <a onclick="del({{ $voter->id }})" href="#" class="mx-2">
                                                     <i class="link-icon text-danger" data-feather="trash-2"></i>
+                                                </a>
+                                                <a onclick="sendWeb({{ $voter->phone }})" href="#" class="mx-2">
+                                                    {{-- <i class="link-icon text-success" data-feather="send"></i> --}}
+                                                    <h3 class=" text-success">Web</h3>
                                                 </a>
                                             </div>
                                         </td>
