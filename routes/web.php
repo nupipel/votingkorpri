@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('user', UserController::class);
     Route::resource('candidate', CandidateController::class);
     Route::resource('voter', VoterController::class);
+    Route::resource('log', VoterController::class);
 });
 
 require __DIR__ . '/auth.php';

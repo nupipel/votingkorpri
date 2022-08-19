@@ -36,6 +36,12 @@
                     <span class="link-title">User</span>
                 </a>
             </li>
+            <li class="nav-item {{ active_class(['user.*']) }}">
+                <a href="{{ route('user.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="smile"></i>
+                    <span class="link-title">Log</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
