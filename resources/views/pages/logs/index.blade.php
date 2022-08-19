@@ -17,25 +17,25 @@
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">Logs</h6>
-                    <div class="text-end mb-2">
-                        <a class="btn btn-primary" href="{{ route('log.create') }}">
-                            <i data-feather="plus"></i>
-                            Create
-                        </a>
-                    </div>
                     <div class="table-responsive">
                         <table id="dataTableExample" class="table">
                             <thead>
                                 <tr>
-                                    <th>Image</th>
+                                    <th>Created At</th>
+                                    <th>Phone</th>
+                                    <th>Voter</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($logs as $log)
                                     <tr>
+                                        <td>{{ $log->created_at }}</td>
                                         <td>
-                                            {{ $log->name }}
+                                            {{ $log->phone }}
+                                        </td>
+                                        <td>
+                                            {{ $log->voter->name }}
                                         </td>
                                         <td>
                                             <div class="btn-group">
