@@ -97,7 +97,7 @@
         function sendWeb(phone) {
             const hp = "62" + phone.toString();
             // const slug = "{{ $log->voter->slug ?? null }}";
-            const textMsg = "VOTING KORPRI : https://votingkorpri.semarangkota.go.id/" + hp;
+            const textMsg = "VOTING KORPRI : https://votingkorpri.semarangkota.go.id/0" + phone;
             window.open("https://wa.me/" + hp + "?text=" + textMsg, "_blank");
         };
 
