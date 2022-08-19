@@ -44,15 +44,18 @@
                                         </td>
                                         <td>
                                             {{ $user->email }}
+                                            {{ Auth::user()->id == $user->id }}
                                         </td>
                                         <td>
                                             <div class="btn-group">
                                                 <a href="{{ route('user.edit', $user->id) }}">
                                                     <i class="link-icon" data-feather="edit"></i>
                                                 </a>
-                                                <a onclick="del({{ $user->id }})" href="#">
-                                                    <i class="link-icon text-danger" data-feather="trash-2"></i>
-                                                </a>
+                                                @if (Auth::user()->id != $user->id)
+                                                    <a onclick="del({{ $user->id }})" href="#">
+                                                        <i class="link-icon text-danger" data-feather="trash-2"></i>
+                                                    </a>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
