@@ -26,6 +26,7 @@
                         <table id="dataTableExample" class="table">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>OPD</th>
                                     <th>Description</th>
@@ -36,6 +37,9 @@
                             <tbody>
                                 @foreach ($candidates as $candidate)
                                     <tr>
+                                        <td>
+                                            {{ $candidate->id }}
+                                        </td>
                                         <td>
                                             {{ $candidate->name }}
                                         </td>
