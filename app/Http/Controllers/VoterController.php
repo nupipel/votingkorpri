@@ -15,9 +15,15 @@ class VoterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $voters = Voter::all();
+        $voters = Voter::when($request->candidate_search, function ($q) use ($request) {
+            if ($request->candidate_search == 'sudah') {
+                return $q->whereNotNull('candidate_id');
+            } else {
+                return $q->whereNull('candidate_id');
+            }
+        })->get();
         return view('pages.voters.index', compact('voters'));
     }
 

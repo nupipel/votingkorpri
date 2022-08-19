@@ -23,6 +23,19 @@
                             Create
                         </a>
                     </div>
+                    <form action="">
+                        <div class="form-group">
+                            <select name="candidate_search" class="form-control" id="">
+                                <option @if (old('candidate_search') == '') selected @endif value="">Pilih Status
+                                </option>
+                                <option @if (old('candidate_search') == 'sudah') selected @endif value="sudah">Sudah</option>
+                                <option @if (old('candidate_search') == 'belum') selected @endif value="belum">Belum</option>
+                            </select>
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">Cari</button>
+                        </div>
+                    </form>
                     <div class="table-responsive">
                         <table id="dataTableExample" class="table">
                             <thead>
