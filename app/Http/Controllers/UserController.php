@@ -39,7 +39,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users,email',
             'password' => 'required',
             'image' => 'required|image',
         ]);
@@ -93,7 +93,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users,email,' . $user->id,
             'image' => 'nullable|image',
         ]);
 

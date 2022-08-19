@@ -44,7 +44,6 @@
                                         </td>
                                         <td>
                                             {{ $user->email }}
-                                            {{ Auth::user()->id == $user->id }}
                                         </td>
                                         <td>
                                             <div class="btn-group">
