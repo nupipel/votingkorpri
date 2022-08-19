@@ -22,8 +22,8 @@
                             <thead>
                                 <tr>
                                     <th>Created At</th>
-                                    <th>Phone</th>
-                                    <th>Voter</th>
+                                    <th>Voter / Phone</th>
+                                    <th>Message</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -32,10 +32,10 @@
                                     <tr>
                                         <td>{{ $log->created_at }}</td>
                                         <td>
-                                            {{ $log->phone }}
+                                            {{ $log->voter->name }} / {{ $log->phone }}
                                         </td>
                                         <td>
-                                            {{ $log->voter->name }}
+                                            {{ $log->message }}
                                         </td>
                                         <td>
                                             <div class="btn-group">
