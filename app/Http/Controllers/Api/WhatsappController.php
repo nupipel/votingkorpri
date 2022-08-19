@@ -21,7 +21,7 @@ class WhatsappController extends Controller
             ];
         }
         foreach ($records as $record) {
-            $message = "VOTING KORPRI\n\nNama : " . $record['name'] . "\nNomor Hp : " . $record['phone'] . "\n\nLink : \n" . env('MAIN_URL') . $record['phone'];
+            $message = "VOTING KORPRI\n\nNama : " . $record['name'] . "\n\nLink : \n" . env('MAIN_URL') . $record['phone'];
 
             $message = preg_replace("/(\n)/", "<ENTER>", $message);
             $message = preg_replace("/(\r)/", "<ENTER>", $message);
@@ -58,7 +58,7 @@ class WhatsappController extends Controller
     }
     public function singleWhatsapp(Voter $voter)
     {
-        $message = "VOTING KORPRI\n\nNama : " . $voter->name . "\nNomor Hp : " . $voter->phone . "\n\nLink : \n" . env('MAIN_URL') . $voter->phone;
+        $message = "VOTING KORPRI\n\nNama : " . $voter->name . "\n\nLink : \n" . env('MAIN_URL') . $voter->phone;
 
         $message = preg_replace("/(\n)/", "<ENTER>", $message);
         $message = preg_replace("/(\r)/", "<ENTER>", $message);
