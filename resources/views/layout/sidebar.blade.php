@@ -38,7 +38,7 @@
             </li>
             <li class="nav-item {{ active_class(['log.*']) }}">
                 <a href="{{ route('log.index') }}" class="nav-link">
-                    <i class="link-icon" data-feather="smile"></i>
+                    <i class="link-icon" data-feather="file-text"></i>
                     <span class="link-title">Log</span>
                 </a>
             </li>
