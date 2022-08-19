@@ -14,7 +14,7 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        $candidates = Candidate::orderBy('desc', 'id')->get();
+        $candidates = Candidate::orderBy('asc', 'id')->get();
         return view('pages.candidates.index', compact('candidates'));
     }
 
