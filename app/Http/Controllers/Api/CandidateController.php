@@ -21,7 +21,7 @@ class CandidateController extends Controller
     }
     public function getTotalVote()
     {
-        $candidates = Candidate::all();
+        $candidates = Candidate::orderBy('id', 'asc')->get();
         $names = [];
         $opds = [];
         $tvotes = [];
