@@ -15,7 +15,7 @@ class DashboardController extends Controller
             'counts'    => Voter::whereNotNull('candidate_id')->get()->count(),
             'uncount'   => Voter::whereNull('candidate_id')->get()->count(),
         ];
-        $candidates = Candidate::all();
+        $candidates = Candidate::orderBy('id')->get();
         return view('dashboard', compact('data', 'candidates'));
     }
 }
