@@ -9,9 +9,12 @@ use Illuminate\Http\Request;
 
 class WhatsappController extends Controller
 {
-    public function kirim_wa()
+    public function kirim_wa(Request $request)
     {
-        $voters = Voter::all();
+        $slug = $request->slug;
+        $voters = Voter::when($slug, function ($q) use ($request) {
+            $q->where('slug', $request->slug);
+        })->get();
         $records = array();
         foreach (json_decode($voters) as $response) {
             $records[] = [
@@ -59,7 +62,10 @@ class WhatsappController extends Controller
     }
     public function kirim_wa_range(Request $request)
     {
-        $voters = Voter::all();
+        $slug = $request->slug;
+        $voters = Voter::when($slug, function ($q) use ($request) {
+            $q->where('slug', $request->slug);
+        })->get();
         $records = array();
         foreach (json_decode($voters) as $response) {
             $records[] = [
